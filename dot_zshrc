@@ -1,0 +1,54 @@
+set -o vi
+export EDITOR=vim
+alias vi=vim
+export TERM=xterm-256color
+bindkey -v
+export KEYTIMEOUT=1
+
+# make sure it is BEFORE the autocomplete setup, not after
+autoload -Uz compinit
+compinit
+
+# https://stackoverflow.com/questions/46432027/bash-kill-vim-when-vim-warning-output-not-to-a-terminal
+# vim() {
+#   [ -t 1 ] || { echo "Not starting vim without stdout to TTY!" >&2; return 1; }
+#   command vim "$@"
+# }
+
+# https://unix.stackexchange.com/questions/478532/why-is-vim-frozen
+stty -ixon
+
+# Colors: https://www.ditig.com/256-colors-cheat-sheet
+PROMPT='%B%F{34}%1~%f%b %# '
+
+# https://scriptingosx.com/2019/07/moving-to-zsh-06-customizing-the-zsh-prompt/
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT=\$vcs_info_msg_0_
+zstyle ':vcs_info:git:*' formats '%F{240}%b %*'
+zstyle ':vcs_info:*' enable git
+
+alias what-is-my-ip='wget -O - -q https://checkip.amazonaws.com'
+
+# https://github.com/ohmyzsh/ohmyzsh/issues/5213#issuecomment-232380118
+bindkey '^r' history-incremental-search-backward
+
+alias co='git co'
+alias k=kubectl
+alias kk='kubectl neat '
+alias kn='k config set-context --current --namespace '
+alias kctx='k config use-context '
+alias ke='k explain --recursive'
+
+source <(kubectl completion zsh)
+# complete -F __start_kubectl k
+
+alias pbcopy="tr -d '\n' | xclip -selection c"
+alias less='less -R'
+alias safedate='date +%F_%H_%M_%S'
+
+alias githubstatus="curl -s https://kctbh9vrtdwd.statuspage.io/api/v2/summary.json | jq -r '.components[] | {name: .name, status: .status}'"
+
+export PATH="${PATH}:${HOME}/.krew/bin:/usr/local/Cellar"
