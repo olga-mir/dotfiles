@@ -35,7 +35,6 @@ alias what-is-my-ip='wget -O - -q https://checkip.amazonaws.com'
 # https://github.com/ohmyzsh/ohmyzsh/issues/5213#issuecomment-232380118
 bindkey '^r' history-incremental-search-backward
 
-alias co='git co'
 alias k=kubectl
 alias kk='kubectl neat '
 alias kn='k config set-context --current --namespace '
@@ -51,4 +50,8 @@ alias safedate='date +%F_%H_%M_%S'
 
 alias githubstatus="curl -s https://kctbh9vrtdwd.statuspage.io/api/v2/summary.json | jq -r '.components[] | {name: .name, status: .status}'"
 
-export PATH="${PATH}:${HOME}/.krew/bin:/usr/local/Cellar"
+export PATH="${PATH}:${HOME}/.krew/bin:${HOME}/bin://usr/local/Cellar"
+
+if [ -f $HOME/.zshrc_private ]; then
+  source $HOME/.zshrc_private
+fi
