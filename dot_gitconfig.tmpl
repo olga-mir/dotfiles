@@ -1,0 +1,36 @@
+[user]
+	name = {{ .name }}
+	email = {{ .email }}
+	signingkey = {{ .signingkey }}
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+	mylog = log --author=Olga --since=\"17 days ago\" --until=\"today\" --format=\"%Cgreen%ci%Creset %s%Creset\"
+	recent = for-each-ref --sort=-committerdate refs/heads/
+	new = !sh -c 'git log $1@{1}..$1@{0} "$@"' # what new commits have been created by the last command
+	ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	f = "!git ls-files | grep -i" # output list of paths that match search param
+	ge = "!f() { git grep $1 -- './*'  ':!*.min.*' ':!*.all.*' ':!*.compiled.*'; }; f"
+	ug = "!f() { git ls-files $1 --error-unmatch; echo $?; }; f" # 0 - if file under git, 1 otherwise
+[push]
+	default = simple
+[core]
+	editor = vim
+[grep]
+	lineNumber = true
+[credential]
+	helper = osxkeychain
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true
