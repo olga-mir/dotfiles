@@ -44,9 +44,14 @@ alias ke='k explain --recursive'
 source <(kubectl completion zsh)
 # complete -F __start_kubectl k
 
-alias pbcopy="tr -d '\n' | xclip -selection c"
+#alias pbcopy="tr -d '\n' | xclip -selection c"
 alias less='less -R'
 alias safedate='date +%F_%H_%M_%S'
+
+alias co='git checkout '
+alias gg='git grep '
+alias gk='gitk --all&'
+alias gx='gitx --all'
 
 alias githubstatus="curl -s https://kctbh9vrtdwd.statuspage.io/api/v2/summary.json | jq -r '.components[] | {name: .name, status: .status}'"
 
