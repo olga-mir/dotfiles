@@ -1,0 +1,27 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/bin/bash
+
+# https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/#install-packages-with-scripts
+
+type brew &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+brew "bash-completion"
+brew "git"
+brew "gnupg"
+brew "helm"
+brew "jq"
+brew "kubectx"
+brew "kubernetes-cli"
+brew "kustomize"
+brew "pre-commit"
+brew "tmux"
+brew "yamllint"
+brew "yq"
+brew "zsh"
+brew "zsh-syntax-highlighting"
+EOF
+{{ end -}}
+
+# https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+# https://iterm2.com/downloads.html
