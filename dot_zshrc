@@ -41,6 +41,7 @@ alias kn='k config set-context --current --namespace '
 alias kctx='k config use-context '
 alias ke='k explain --recursive'
 alias kge="k get events --sort-by='.lastTimestamp'"
+alias c=kubectx
 
 source <(kubectl completion zsh)
 # complete -F __start_kubectl k

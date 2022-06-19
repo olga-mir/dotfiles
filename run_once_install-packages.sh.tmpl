@@ -6,22 +6,22 @@
 type brew &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
+brew "awscli"
 brew "bash-completion"
 brew "git"
 brew "gnupg"
 brew "helm"
 brew "jq"
+brew "krew"
 brew "kubectx"
 brew "kubernetes-cli"
 brew "kustomize"
 brew "pre-commit"
 brew "tmux"
+brew "tree"
 brew "yamllint"
 brew "yq"
 brew "zsh"
 brew "zsh-syntax-highlighting"
 EOF
 {{ end -}}
-
-# https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
-# https://iterm2.com/downloads.html
