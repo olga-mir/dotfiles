@@ -30,8 +30,6 @@ RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{240}%b %*'
 zstyle ':vcs_info:*' enable git
 
-alias what-is-my-ip='wget -O - -q https://checkip.amazonaws.com'
-
 # https://github.com/ohmyzsh/ohmyzsh/issues/5213#issuecomment-232380118
 bindkey '^r' history-incremental-search-backward
 
@@ -46,16 +44,16 @@ alias c=kubectx
 source <(kubectl completion zsh)
 # complete -F __start_kubectl k
 
-#alias pbcopy="tr -d '\n' | xclip -selection c"
-alias less='less -R'
-alias safedate='date +%F_%H_%M_%S'
-
 alias co='git checkout '
 alias gg='git grep '
 alias gk='gitk --all&'
 alias gx='gitx --all'
 
+# Misc aliases
 alias githubstatus="curl -s https://kctbh9vrtdwd.statuspage.io/api/v2/summary.json | jq -r '.components[] | {name: .name, status: .status}'"
+alias what-is-my-ip='wget -O - -q https://checkip.amazonaws.com'
+alias safedate='date +%F_%H_%M_%S'
+alias parse-jwt="jq -R 'split(".") | .[1] | @base64d | fromjson'"
 
 export PATH="${PATH}:${HOME}/.krew/bin:${HOME}/bin://usr/local/Cellar"
 
