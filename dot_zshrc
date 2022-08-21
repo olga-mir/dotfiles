@@ -41,22 +41,28 @@ alias ke='k explain --recursive'
 alias kge="k get events --sort-by='.lastTimestamp'"
 alias c=kubectx
 
+# ref: `eksctl completion zsh --help`
+fpath=($fpath ~/.zsh/completion)
 source <(kubectl completion zsh)
-# complete -F __start_kubectl k
+
+alias safedate='date +%F_%H_%M_%S'
+alias parse-jwt="jq -R 'split(".") | .[1] | @base64d | fromjson'"
+alias what-is-my-ip='wget -O - -q https://checkip.amazonaws.com'
+
+#alias convert_ip="for i in $(echo $ip | tr '.' ' '); do echo "obase=2 ; $i" | bc; done | awk '{printf ".%08d", $1}' | cut -c2-"
 
 alias co='git checkout '
 alias gg='git grep '
 alias gk='gitk --all&'
 alias gx='gitx --all'
 
-# Misc aliases
 alias githubstatus="curl -s https://kctbh9vrtdwd.statuspage.io/api/v2/summary.json | jq -r '.components[] | {name: .name, status: .status}'"
-alias what-is-my-ip='wget -O - -q https://checkip.amazonaws.com'
-alias safedate='date +%F_%H_%M_%S'
-alias parse-jwt="jq -R 'split(".") | .[1] | @base64d | fromjson'"
 
 export PATH="${PATH}:${HOME}/.krew/bin:${HOME}/bin://usr/local/Cellar"
 
 if [ -f $HOME/.zshrc_private ]; then
   source $HOME/.zshrc_private
 fi
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

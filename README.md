@@ -14,9 +14,12 @@ $ sh -c "$(curl -fsLS chezmoi.io/get)"
 ```
 
 Then setup variables that chezmoi will need for rendering templates. In this setup there are few params for gitconfig and gpg key id, this need to be generated or imported before running `chezmoi apply`
-```
+github ssh keys need to be setup before running `chezmoi init` command. [Generate new](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) or import from another location before proceeding.
+`chezmoi init` requires all values used in the .gitconfig template to be set. One of them is gpg key for commits signing which does not exist on a clean machine before necessary tools are installed. It can be set to a temp value and later edited manually.
+
+```bash
 $ chezmoi edit-config # see below, all values need to be filled before running next command
-$ chezmoi init https://github.com/username/dotfiles.git
+$ chezmoi init git@github.com:<USER>/dotfiles.git
 $ chezmoi apply -v
 ```
 
@@ -40,6 +43,7 @@ and add required values, e.g. for .gitconfig:
 [data]
          name = "value"
          email = "value"
+         signingkey = "temp-value"
 ```
 Note that values must be quoted.
 
