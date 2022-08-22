@@ -2,8 +2,6 @@
 
 Manage config across multiple workstations using [chezmoi](https://www.chezmoi.io)
 
-Vim config managed in separate repo [dotvim](https://github.com/olga-mir/dotvim)
-
 # Configure new machine
 
 Before running `chezmoi` on MacOS install xcode command line tools.
@@ -23,7 +21,7 @@ $ chezmoi init git@github.com:<USER>/dotfiles.git
 $ chezmoi apply -v
 ```
 
-## Template
+# Template existing config
 
 Using variables for personal information or settings that are different between workstations.
 
@@ -53,3 +51,16 @@ chezmoi add  -T --autotemplate ~/.gitconfig
 ```
 
 This will create `dot_gitconfig.tmpl` file in `chezmoi` folder.
+
+# Not covered
+
+Currently not covered by install script:
+
+* Visual Studio Code
+  use "Settings Sync" extention to sync complete setup on another machine.
+  the plugin did not port all setting smoothly, manual fixes: https://github.com/VSCodeVim/Vim#mac
+* Docker
+* SSH key management (needed before chezmoi init to pull repo)
+* GPG key management
+* Vim config managed in separate repo [dotvim](https://github.com/olga-mir/dotvim)
+
