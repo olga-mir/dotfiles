@@ -3,6 +3,11 @@
 
 # https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/#install-packages-with-scripts
 
+# cmctl: https://cert-manager.io/docs/reference/cmctl/
+# OS=$(go env GOOS); ARCH=$(go env GOARCH); curl -sSL -o cmctl.tar.gz https://github.com/cert-manager/cert-manager/releases/download/v1.7.2/cmctl-$OS-$ARCH.tar.gz
+# tar xzf cmctl.tar.gz
+# sudo mv cmctl /usr/local/bin
+
 type brew &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
@@ -10,6 +15,7 @@ brew "awscli"
 brew "bash-completion"
 brew "cilium-cli"
 brew "git"
+brew "git-secrets"
 brew "gnupg"
 brew "go"
 brew "helm"
@@ -28,4 +34,5 @@ brew "yq"
 brew "zsh"
 brew "zsh-syntax-highlighting"
 EOF
+
 {{ end -}}
