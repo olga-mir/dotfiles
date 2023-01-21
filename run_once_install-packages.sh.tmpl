@@ -19,6 +19,7 @@ brew "git-secrets"
 brew "gnupg"
 brew "go"
 brew "helm"
+brew "hashicorp/tap/terraform"
 brew "jq"
 brew "jsonnet"
 brew "kind"
@@ -36,3 +37,7 @@ brew "zsh-syntax-highlighting"
 EOF
 
 {{ end -}}
+
+# complete install git-secrets in every repo:
+# $ git secrets --install
+# https://github.com/awslabs/git-secrets
