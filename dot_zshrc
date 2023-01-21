@@ -10,6 +10,7 @@ alias h='history 1 | grep '
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete -C '/usr/local/bin/aws_completer' aws
+terraform -install-autocomplete
 
 # https://stackoverflow.com/questions/46432027/bash-kill-vim-when-vim-warning-output-not-to-a-terminal
 # vim() {
@@ -65,3 +66,12 @@ export PATH="${PATH}:${HOME}/.krew/bin:${HOME}/bin:/usr/local/Cellar"
 if [ -f $HOME/.zshrc_private ]; then
   source $HOME/.zshrc_private
 fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/olga/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/olga/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/olga/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/olga/google-cloud-sdk/completion.zsh.inc'; fi
