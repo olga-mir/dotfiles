@@ -10,7 +10,8 @@
       "Bash(grep:*)",
       "Bash(flux get:*)",
       "Bash(diff:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Skill(git-conventional-commits)"
     ],
     "deny": [
       "Bash(git add:*)"
