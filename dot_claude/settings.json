@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "Bash(gh pr list)",
+      "Bash(gh pr view)",
+      "Bash(find:*)",
+      "Bash(rg:*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(flux get:*)",
+      "Bash(diff:*)",
+      "Bash(tree:*)"
+    ],
+    "deny": [
+      "Bash(git add:*)"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+  "alwaysThinkingEnabled": true
+}

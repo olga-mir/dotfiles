@@ -8,7 +8,7 @@ Before running `chezmoi` on MacOS install xcode command line tools.
 
 ```
 $ xcode-select --install
-$ sh -c "$(curl -fsLS chezmoi.io/get)"
+$ sh -c "$(curl -fsLS get.chezmoi.io)"
 ```
 
 Then setup variables that chezmoi will need for rendering templates. In this setup there are few params for gitconfig and gpg key id, this need to be generated or imported before running `chezmoi apply`
