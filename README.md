@@ -4,22 +4,40 @@ Manage config across multiple workstations using [chezmoi](https://www.chezmoi.i
 
 # Configure new machine
 
-Before running `chezmoi` on MacOS install xcode command line tools.
+## Prerequisites
+
+**Step 1: Xcode command line tools** — required before anything else. This installs Apple's developer tools (git, clang, etc.) which Homebrew depends on. This does NOT install Homebrew itself.
 
 ```
 $ xcode-select --install
+```
+
+**Step 2: Brew**
+
+Download `pkg` file from latest release and install: https://github.com/Homebrew/brew/releases
+
+**Step 3: SSH keys** — needed to clone the dotfiles repo via git. [Generate new](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) or import from another machine before proceeding.
+
+**Step 4: Install chezmoi**
+
+```
 $ sh -c "$(curl -fsLS get.chezmoi.io)"
 ```
 
-Then setup variables that chezmoi will need for rendering templates. In this setup there are few params for gitconfig and gpg key id, this need to be generated or imported before running `chezmoi apply`
-github ssh keys need to be setup before running `chezmoi init` command. [Generate new](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) or import from another location before proceeding.
-`chezmoi init` requires all values used in the .gitconfig template to be set. One of them is gpg key for commits signing which does not exist on a clean machine before necessary tools are installed. It can be set to a temp value and later edited manually.
+## Apply dotfiles
+
+Set up variables chezmoi needs for rendering templates (git name/email/GPG signing key). The GPG key doesn't exist yet on a clean machine — use a placeholder and update it later.
 
 ```bash
-$ chezmoi edit-config # see below, all values need to be filled before running next command
+$ chezmoi edit-config # fill in name, email, signingkey before running next command
 $ chezmoi init git@github.com:<USER>/dotfiles.git
 $ chezmoi apply -v
 ```
+
+`chezmoi apply` will automatically:
+- Install Homebrew if not present (the install script bootstraps it)
+- Add Homebrew to `$PATH` if needed (handles Apple Silicon's `/opt/homebrew` prefix)
+- Install all packages via `brew bundle`
 
 # Template existing config
 

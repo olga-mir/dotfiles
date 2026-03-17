@@ -4,6 +4,11 @@
 
 type brew &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# Ensure brew is on PATH (required on Apple Silicon after fresh install)
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 brew bundle --no-lock --file=/dev/stdin <<EOF
 brew "bash-completion"
 brew "git"
