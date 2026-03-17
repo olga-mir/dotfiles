@@ -1,4 +1,3 @@
-{{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/bash
 
 # https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/#install-packages-with-scripts
@@ -27,9 +26,9 @@ brew "yq"
 brew "zsh"
 brew "zsh-syntax-highlighting"
 brew "loft-sh/tap/vcluster"
+brew "gemini-cli"
+cask "claude-code"
 EOF
-
-{{ end -}}
 
 # complete install git-secrets in every repo:
 # $ git secrets --install
