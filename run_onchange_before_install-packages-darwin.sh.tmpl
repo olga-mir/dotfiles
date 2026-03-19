@@ -9,32 +9,7 @@ if [ -x /opt/homebrew/bin/brew ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-brew bundle --file=/dev/stdin <<EOF
-brew "bash-completion"
-brew "git"
-brew "gnupg"
-brew "go"
-brew "helm"
-brew "hashicorp/tap/terraform"
-brew "jq"
-brew "jsonnet"
-brew "kind"
-brew "krew"
-brew "kubectx"
-brew "kubernetes-cli"
-brew "kustomize"
-brew "pre-commit"
-brew "tmux"
-brew "tree"
-brew "yamllint"
-brew "yq"
-brew "zsh"
-brew "zsh-syntax-highlighting"
-brew "loft-sh/tap/vcluster"
-brew "gemini-cli"
-cask "claude-code"
-cask "google-cloud-sdk"
-EOF
+brew bundle --global
 
 # complete install git-secrets in every repo:
 # $ git secrets --install
