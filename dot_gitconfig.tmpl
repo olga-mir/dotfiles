@@ -18,6 +18,7 @@
 	f = "!git ls-files | grep -i" # output list of paths that match search param
 	ge = "!f() { git grep $1 -- './*'  ':!*.min.*' ':!*.all.*' ':!*.compiled.*'; }; f"
 	ug = "!f() { git ls-files $1 --error-unmatch; echo $?; }; f" # 0 - if file under git, 1 otherwise
+	pc = !git push -u origin $(git symbolic-ref --short HEAD)
 [push]
 	default = simple
 [core]
@@ -44,11 +45,3 @@
 	diff = always
 	interactive = always
 	status = always
-[secrets]
-	patterns = (kind:\\s*Secret) # https://github.com/awslabs/git-secrets#defining-prohibited-patterns
-	providers = git secrets --aws-provider
-	patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
-	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
-	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
-	allowed = AKIAIOSFODNN7EXAMPLE
-	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
