@@ -80,17 +80,6 @@ if [ -f "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc" ]; then . "$(brew
 # The next line enables shell command completion for gcloud.
 if [ -f "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc" ]; then . "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"; fi
 
-takeme() {
-  case "$1" in
-    github)
-      open "https://github.com/olga-mir/playground"
-      ;;
-    *)
-      echo "Unknown destination: $1"
-      echo "Available destinations: tbc"
-      ;;
-  esac
-}
 
 # mystash this-file.txt           → ~/dev/stash/2026-03-06_14_30_45-this-file.txt
 # mystash this-file.txt mynote    → ~/dev/stash/2026-03-06_14_30_45-mynote-this-file.txt
