@@ -19,6 +19,7 @@
 	ge = "!f() { git grep $1 -- './*'  ':!*.min.*' ':!*.all.*' ':!*.compiled.*'; }; f"
 	ug = "!f() { git ls-files $1 --error-unmatch; echo $?; }; f" # 0 - if file under git, 1 otherwise
 	pc = !git push -u origin $(git symbolic-ref --short HEAD)
+	sign-last = "!f() { git rebase HEAD~${1:-1} --exec 'git commit --amend --no-edit -S'; }; f"
 [push]
 	default = simple
 [core]
